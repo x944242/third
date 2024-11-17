@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Total Calculator</title>
 
+  <!--add the reference to javascript-->
+
+  
+<script src="https://js.stripe.com/v3/"></script>
+  
 <style>
     .shop-button {
       display: inline-block;
@@ -60,6 +65,13 @@
   <!-- Total Display -->
   <div id="total-display">Total: £<span id="total-amount">0.00</span></div>
 
+      <!--additional html for the button>
+<div style="text-align: center; margin-top: 50px;">
+    <button id="checkout-button" style="padding: 12px 24px; font-size: 16px; font-weight: bold; color: white; background-color: #007BFF; border: none; border-radius: 8px; cursor: pointer;">
+      Proceed to Checkout
+    </button>
+</div>
+      
   <!-- Link to the external script -->
 
 
@@ -103,7 +115,29 @@ function calculateTotal() {
 document.getElementById('jar-count-blossom').addEventListener('input', calculateTotal);
 document.getElementById('jar-count-heather').addEventListener('input', calculateTotal);
         
-  </script>
+ <!--additional javascript to create a stripe button-->
+   //create a reference to Stripe
+   const stripe = Stripe('pk_live_51PPPr204b8w8QaGsbiirgUgUTv90PCGh0Q73MYFOLZgGcQU8IjahWwfNR8TxK2SneMUF8Bu4hNfUF94Ev8QRUrnu00xIE2Dfx4'); //Replaced with actual key
+    document.getElementById('checkout-button').addEventListener('click',async ()  => {    
+      //Retrieve the total amount (this would typically be passed to this page dynamically
+
+          const totalAmount = localStorage.getItem('totalAmount') || 0; //Assume the total is in local storage
+
+      //Make a request to your server to create a checkout session
+      const response = await fetch('/create-checkout-session', {
+        method: 'POST',
+        headers; { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: totalAmount })
+    });
+        const session = await response.json();
+        if (session.id) {
+          //Redirect to Stripe Checkout
+          stripe.redirectToCheckout({ sessionId: session.id });
+        } else {
+          alert('Failed to create a checkout session. Please try again.');
+        }
+        });
+          </script>
 
 
       
