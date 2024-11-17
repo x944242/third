@@ -103,23 +103,25 @@ function calculateTotal() {
  // Check for minimum order of 2 jars
       const totalJars = jarCountBlossom + jarCountHeather;
       if (totalJars < 2) {
-        alert("The minimum order is 2 jars. Please adjust your order.");
-        return; // Stop further execution if minimum is not met
+        document.getElementById('total-amount').textContent = "0.00";
+        return; 
       }
+       
+       
+      
 
 // Update total display
   document.getElementById('total-amount').textContent = overallTotal.toFixed(2);
+localStorage.setItem('totalAmount', overallTotal.toFixed(2));
 }
 
         // Attach event listeners to input fields
 document.getElementById('jar-count-blossom').addEventListener('input', calculateTotal);
 document.getElementById('jar-count-heather').addEventListener('input', calculateTotal);
         
-/*additional javascript to create a stripe button*/
    //create a reference to Stripe
-   const stripe = Stripe('pk_test_51PPPr204b8w8QaGsoOQGIOrQvEuwa9S4miyecuF3WGJhjwWGHJGezcXJaArAKdXGfPBXWI7q1xje9XVsU1zbIvJj00XFTuP5Fk('checkout-button').addEventListener('click',async ()  => {    
-      //Retrieve the total amount (this would typically be passed to this page dynamically
-
+   const stripe = Stripe('pk_test_51PPPr204b8w8QaGsoOQGIOrQvEuwa9S4miyecuF3WGJhjwWGHJGezcXJaArAKdXGfPBXWI7q1xje9XVsU1zbIvJj00XFTuP5Fk');    
+document.getElementById('checkout-button').addEventListener('click', async () => {
           const totalAmount = localStorage.getItem('totalAmount') || 0; //Assume the total is in local storage
 
       //Make a request to your server to create a checkout session
@@ -140,12 +142,6 @@ document.getElementById('jar-count-heather').addEventListener('input', calculate
 
 
       
-<!--product page ends -->
-
-<!--checkout session page-->
-
-    
-<!--checkout session page ends-->
     
 </body>
 </html>
