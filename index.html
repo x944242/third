@@ -66,28 +66,13 @@
   <!-- Link to the external script -->
 
 
-<!--new javascript - this will calculate the total on the page and then set up a payment page-->
-
-      <script>
-
-
-
-
-
-
-        
-      </script>
-        
-      
-      
- <!-- origial javascript deactivated so that I can experiment with calculating the total on this page and sending that total to stripe checkout page
 
       <script>
 
 
     
   
-document.getElementById('calculate-button').addEventListener('click', function() {
+function calculateTotal() {
   // Get input values
   const jarCountBlossom = parseInt(document.getElementById('jar-count-blossom').value) || 0;
   const jarCountHeather = parseInt(document.getElementById('jar-count-heather').value) || 0;
@@ -112,13 +97,19 @@ document.getElementById('calculate-button').addEventListener('click', function()
         alert("The minimum order is 2 jars. Please adjust your order.");
         return; // Stop further execution if minimum is not met
       }
-  
-  // Update total display
+
+// Update total display
   document.getElementById('total-amount').textContent = overallTotal.toFixed(2);
-});
+}
+
+        // Attach event listeners to input fields
+document.getElementById('jar-count-blossom').addEventListener('input', calculateTotal);
+document.getElementById('jar-count-heather').addEventListener('input', calculateTotal);
+        
   </script>
 
--->
+
+      
 <!--product page ends -->
 
 <!--checkout session page-->
