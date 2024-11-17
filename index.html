@@ -37,9 +37,19 @@ document.getElementById('calculate-button').addEventListener('click', function()
   const totalBlossom = jarCountBlossom * priceBlossom;
   const totalHeather = jarCountHeather * priceHeather;
 
+
+
+  
   // Calculate overall total
   const overallTotal = totalBlossom + totalHeather;
 
+ // Check for minimum order of 2 jars
+      const totalJars = jarCountBlossom + jarCountHeather;
+      if (totalJars < 2) {
+        alert("The minimum order is 2 jars. Please adjust your order.");
+        return; // Stop further execution if minimum is not met
+      }
+  
   // Update total display
   document.getElementById('total-amount').textContent = overallTotal.toFixed(2);
 });
