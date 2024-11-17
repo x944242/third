@@ -8,23 +8,42 @@
 <body>
   <!-- User Input -->
   <label for="jar-count">Number of jars of blossom honey (£6.50 each):</label>
-  <input type="number" id="jar-count" step="1" min="0" placeholder="0">
+  <input type="number" id="jar-count-blossom" step="1" min="0" placeholder="0">
   <button id="calculate-button">Calculate Total</button>
 
+<!-- User Input -->
+  <label for="jar-count">Number of jars of Heather honey (£8 each):</label>
+  <input type="number" id="jar-count-heather" step="1" min="0" placeholder="0">
+  <button id="calculate-button">Calculate Total</button>
+
+  
   <!-- Total Display -->
   <div id="total-display">Total: £<span id="total-amount">0.00</span></div>
 
   <!-- Link to the external script -->
+  
   <script>
-    // JavaScript to handle the calculation
-    document.getElementById('calculate-button').addEventListener('click', function() {
-      const jarCount = parseInt(document.getElementById('jar-count').value) || 0; // Get number of jars
-      const pricePerJar = 6.50; // Price of one jar
-      const totalAmount = jarCount * pricePerJar; // Calculate total price
 
-      const totalAmountElement = document.getElementById('total-amount');
-      totalAmountElement.textContent = totalAmount.toFixed(2); // Update display
-    });
+document.getElementById('calculate-button').addEventListener('click', function() {
+  // Get input values
+  const jarCountBlossom = parseInt(document.getElementById('jar-count-blossom').value) || 0;
+  const jarCountHeather = parseInt(document.getElementById('jar-count-heather').value) || 0;
+
+  // Prices
+  const priceBlossom = 6.50;
+  const priceHeather = 8.00;
+
+  // Calculate totals for each honey type
+  const totalBlossom = jarCountBlossom * priceBlossom;
+  const totalHeather = jarCountHeather * priceHeather;
+
+  // Calculate overall total
+  const overallTotal = totalBlossom + totalHeather;
+
+  // Update total display
+  document.getElementById('total-amount').textContent = overallTotal.toFixed(2);
+});
+
   </script>
 </body>
 </html>
