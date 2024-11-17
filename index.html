@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Total Calculator</title>
+  <title>FineLocalHoney</title>
 
   <!--add the reference to javascript-->
 
@@ -26,11 +26,7 @@
     .shop-button:hover {
       background-color: #0056b3;
     }
-
-
-
-
-  
+ 
 </style>
 
 <!-- have I used the 'class' function correctly here. Is this the best way to link to the relevant style-->
@@ -62,10 +58,14 @@
   <input type="number" id="jar-count-heather" step="1" min="0" placeholder="0">
   <br><br><br><br>
 <br><br><br><br>
-  <!-- Total Display -->
-  <div id="total-display">Total: £<span id="total-amount">0.00</span></div>
 
-      <!--additional html for the button>
+      
+  <!-- Total Display -->
+  <div id="total-display">
+    Total: £<span id="total-amount">0.00</span>
+  </div>
+
+      <!--checkout button>
 <div style="text-align: center; margin-top: 50px;">
     <button id="checkout-button" style="padding: 12px 24px; font-size: 16px; font-weight: bold; color: white; background-color: #007BFF; border: none; border-radius: 8px; cursor: pointer;">
       Proceed to Checkout
@@ -76,10 +76,7 @@
 
 
 
-      <script>
-
-
-    
+      <script>   
   
 function calculateTotal() {
   // Get input values
@@ -94,8 +91,6 @@ function calculateTotal() {
   const totalBlossom = jarCountBlossom * priceBlossom;
   const totalHeather = jarCountHeather * priceHeather;
 
-
-
   
   // Calculate overall total
   const overallTotal = totalBlossom + totalHeather;
@@ -106,10 +101,8 @@ function calculateTotal() {
         document.getElementById('total-amount').textContent = "0.00";
         return; 
       }
-       
-       
+              
       
-
 // Update total display
   document.getElementById('total-amount').textContent = overallTotal.toFixed(2);
 localStorage.setItem('totalAmount', overallTotal.toFixed(2));
