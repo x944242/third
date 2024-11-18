@@ -235,6 +235,25 @@ header {
           alert('Failed to create a checkout session. Please try again.');
         }
         });
+        
+        //new script for top line basket
+document.addEventListener('DOMContentLoaded', function() {
+    // Example function to update the item count
+    function updateItemCount(count) {
+        const itemCountElement = document.querySelector('.item-count');
+        itemCountElement.textContent = count;
+    }
+
+    // Simulate adding items to the basket
+    let itemCount = 0;
+    setInterval(() => {
+        itemCount++;
+        updateItemCount(itemCount);
+    }, 2000);  // Increment item count every 2 seconds for demonstration
+});
+
+
+        
           </script>
     
 </body>
